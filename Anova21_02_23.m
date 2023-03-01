@@ -86,6 +86,29 @@ end
 [hMeanNormLight,pMeanNormLight] = ttest2(firstColumn,secondColumn); 
 
 
+
+%array del test BASSO
+%direct
+firstColumn = meanNorm.directNoAid';
+%indirect
+secondColumn = meanNorm.indirectNoAid';
+
+tbl = [firstColumn secondColumn];
+aovMeanNormNoAid = anova1(tbl, aids);
+%ylim = [0 100];
+ylabel = ('mean norm error');
+grid on 
+hold on
+plot(1:length(tbl(1,:)),mean(tbl), 'dg')  % % Overlay the mean as green diamonds x-axis is the intergers of position
+legend({'mean'})
+hold off
+saveas(gcf,'aovMeanNormNoAid','jpg')
+if aovMeanNormNoAid < 0.05
+    fprintf('mean norm comparison for no aid test is valid\n')
+end
+[hMeanNormLight,pMeanNormLight] = ttest2(firstColumn,secondColumn); 
+
+
 %% ANOVA SULLE DIST ROLL DI CIASCUN GRUPPO 
 
 %array delle distRoll (ciclo for al variare di fn)
@@ -119,7 +142,7 @@ secondColumn = distRollmean.indirectTraining';
 tbl = [firstColumn secondColumn];
 aovdistRollTraining = anova1(tbl, aids);
 %ylim = [0 100];
-ylabel = ('mean norm error');
+ylabel = ('error in roll component');
 grid on 
 hold on
 plot(1:length(tbl(1,:)),mean(tbl), 'dg')  % % Overlay the mean as green diamonds x-axis is the intergers of position
@@ -141,7 +164,7 @@ secondColumn = distRollmean.indirectAlto';
 tbl = [firstColumn secondColumn];
 aovdistRollStrongAid = anova1(tbl, aids);
 %ylim = [0 100];
-ylabel = ('mean norm error');
+ylabel = ('error in roll component');
 grid on
 hold on
 plot(1:length(tbl(1,:)),mean(tbl), 'dg')  % % Overlay the mean as green diamonds x-axis is the intergers of position
@@ -163,7 +186,7 @@ secondColumn = distRollmean.indirectBasso';
 tbl = [firstColumn secondColumn];
 aovdistRollLightAid = anova1(tbl, aids);
 %ylim = [0 100];
-ylabel = ('mean norm error');
+ylabel = ('error in roll component');
 grid on 
 hold on
 plot(1:length(tbl(1,:)),mean(tbl), 'dg')  % % Overlay the mean as green diamonds x-axis is the intergers of position
@@ -174,6 +197,28 @@ if aovdistRollLightAid < 0.05
     fprintf('mean norm comparison for light aid test is valid\n')
 end
 [hdistRollLight,pdistRollLight] = ttest2(firstColumn,secondColumn); 
+
+
+%array del test noAid
+%direct
+firstColumn = distRollmean.directNoAid';
+%indirect
+secondColumn = distRollmean.indirectNoAid';
+
+tbl = [firstColumn secondColumn];
+aovdistRollNoAid = anova1(tbl, aids);
+%ylim = [0 100];
+ylabel = ('error in roll component');
+grid on 
+hold on
+plot(1:length(tbl(1,:)),mean(tbl), 'dg')  % % Overlay the mean as green diamonds x-axis is the intergers of position
+legend({'mean'})
+hold off
+saveas(gcf,'aovdistRollNoAid','jpg')
+if aovdistRollNoAid < 0.05
+    fprintf('mean norm comparison for NoAid test is valid\n')
+end
+[hdistRollNoAid,pdistRollNoAid] = ttest2(firstColumn,secondColumn); 
 
 
 
@@ -210,7 +255,7 @@ secondColumn = distPitchmean.indirectTraining';
 tbl = [firstColumn secondColumn];
 aovdistPitchTraining = anova1(tbl, aids);
 %ylim = [0 100];
-ylabel = ('mean norm error');
+ylabel = ('error in pitch component');
 grid on 
 hold on
 plot(1:length(tbl(1,:)),mean(tbl), 'dg')  % % Overlay the mean as green diamonds x-axis is the intergers of position
@@ -236,7 +281,7 @@ secondColumn = distPitchmean.indirectAlto';
 tbl = [firstColumn secondColumn];
 aovdistPitchStrongAid = anova1(tbl, aids);
 %ylim = [0 100];
-ylabel = ('mean norm error');
+ylabel = ('error in pitch component');
 grid on 
 hold on
 plot(1:length(tbl(1,:)),mean(tbl), 'dg')  % % Overlay the mean as green diamonds x-axis is the intergers of position
@@ -258,7 +303,7 @@ secondColumn = distPitchmean.indirectBasso';
 tbl = [firstColumn secondColumn];
 aovdistPitchLightAid = anova1(tbl, aids);
 %ylim = [0 100];
-ylabel = ('mean norm error');
+ylabel = ('error in pitch component');
 grid on 
 hold on
 plot(1:length(tbl(1,:)),mean(tbl), 'dg')  % % Overlay the mean as green diamonds x-axis is the intergers of position
@@ -269,3 +314,25 @@ if aovdistPitchLightAid < 0.05
     fprintf('mean norm comparison for light aid test is valid\n')
 end
 [hdistPitchLight,pdistPitchLight] = ttest2(firstColumn,secondColumn); 
+
+
+%array del test NOAID
+%direct
+firstColumn = distPitchmean.directNoAid';
+%indirect
+secondColumn = distPitchmean.indirectNoAid';
+
+tbl = [firstColumn secondColumn];
+aovdistPitchNoAidAid = anova1(tbl, aids);
+%ylim = [0 100];
+ylabel = ('error in pitch component');
+grid on 
+hold on
+plot(1:length(tbl(1,:)),mean(tbl), 'dg')  % % Overlay the mean as green diamonds x-axis is the intergers of position
+legend({'mean'})
+hold off
+saveas(gcf,'aovdistPitchNoAid','jpg')
+if aovdistPitchLightAid < 0.05
+    fprintf('mean norm comparison for NoAid test is valid\n')
+end
+[hdistPitchNoAid,pdistPitchNoAid] = ttest2(firstColumn,secondColumn); 
